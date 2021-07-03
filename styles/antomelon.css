@@ -56,16 +56,20 @@ header {
     align-items: center;
     justify-content: space-evenly;
 
-    height: 15vh;
+    height: 10vh;
     width: 100%;
     background-color: #f8f8f8;
+
+    border-bottom: 2px #aaa solid;
+
+    box-shadow: 0 0 1vh #888;
 
     position: fixed;
 }
 
-header .header_nav {
-    height: 8vh;
-    width: 20vh;
+.header_nav, .header_nav_selected {
+    height: 6vh;
+    min-width: 20vh;
 
     border: 2px #888 solid;
     border-radius: 3vh;
@@ -75,10 +79,111 @@ header .header_nav {
     font: 24px/1.8 Impact, Verdana, sans-serif;
 }
 
-.header_nav a {
+.header_nav a, .header_nav_selected a {
     color: black;
     text-decoration: none;
 }
-.header_nav:hover {
-    box-shadow: inset;
+
+.header_nav {
+    box-shadow: 0 0 3vh #aaa;
+}
+
+.header_nav_selected {
+    box-shadow: inset 0 0 1vh #aaa;
+}
+
+.flag {
+    position: absolute;
+    right: 5vh
+}
+
+/*------Preview------*/
+
+input[id*="rad_prev"] {
+    display: none;
+}
+
+#preview {
+    background-image: url("../images/Preview.png");
+    width: 100%;
+    height: 400px;
+
+    border-bottom: 2px #aaa solid;
+
+    transition-property: background-position-x;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
+
+#rad_prev1:checked ~ #preview {
+    background-position-x: 0px;
+}
+
+#rad_prev2:checked ~ #preview {
+    background-position-x: 50%;
+}
+
+#rad_prev3:checked ~ #preview {
+    background-position-x: 100%;
+}
+
+.pos_rel {
+    position: relative;
+    top: 10vh;
+}
+
+label[for*="rad_prev"]::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+
+    background-color: white;
+
+    border-radius: 100%;
+
+    position: absolute;
+    bottom: 23px;
+
+    visibility: hidden;
+}
+
+label[for*="rad_prev1"]::before {
+    left: calc(50% - 67px);
+}
+
+label[for*="rad_prev2"]::before {
+    left: calc(50% - 17px);
+}
+
+label[for*="rad_prev3"]::before {
+    left: calc(50% + 33px);
+}
+
+label[for*="rad_prev"]::after {
+    content: '';
+    width: 30px;
+    height: 30px;
+
+    border: 5px solid white;
+
+    border-radius: 100%;
+
+    position: absolute;
+    bottom: 10px;
+}
+
+label[for*="_prev1"]::after {
+    left: calc(50% - 80px);
+}
+
+label[for*="_prev2"]::after {
+    left: calc(50% - 30px);
+}
+
+label[for*="_prev3"]::after {
+    left: calc(50% + 20px);
+}
+
+input[id*="rad_prev"]:checked + label[for*="_prev"]::before {
+    visibility: visible;
 }
