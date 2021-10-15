@@ -49,7 +49,23 @@ table {
 
 /*-----------AntoMelon's stylesheet-----------*/
 
-/*Header*/
+body {
+    --color1: #f8f8f8;
+    --color2: #aaa;
+    --color3: #888;
+
+    --colorBW: #000;
+
+    --white: #fff;
+}
+
+body.dark {
+
+}
+
+/*****************************
+************Header************
+*****************************/
 
 header {
     display: flex;
@@ -58,20 +74,22 @@ header {
 
     height: 10vh;
     width: 100%;
-    background-color: #f8f8f8;
+    background-color: var(--color1);
 
-    border-bottom: 2px #aaa solid;
+    border-bottom: 2px var(--color2) solid;
 
-    box-shadow: 0 0 1vh #888;
+    box-shadow: 0 0 1vh var(--color3);
 
     position: fixed;
+
+    z-index: 1;
 }
 
 .header_nav, .header_nav_selected {
     height: 6vh;
-    min-width: 20vh;
+    min-width: 25vh;
 
-    border: 2px #888 solid;
+    border: 2px var(--color3) solid;
     border-radius: 3vh;
 
     text-align: center;
@@ -80,16 +98,16 @@ header {
 }
 
 .header_nav a, .header_nav_selected a {
-    color: black;
+    color: var(--colorBW);
     text-decoration: none;
 }
 
 .header_nav {
-    box-shadow: 0 0 3vh #aaa;
+    box-shadow: 0 0 3vh var(--color2);
 }
 
 .header_nav_selected {
-    box-shadow: inset 0 0 1vh #aaa;
+    box-shadow: inset 0 0 1vh var(--color2);
 }
 
 .flag {
@@ -97,7 +115,15 @@ header {
     right: 5vh
 }
 
-/*------Preview------*/
+.offsetCorr {
+    position: relative;
+    height: 10vh;
+}
+
+
+/*****************************
+***********Preview************
+*****************************/
 
 input[id*="rad_prev"] {
     display: none;
@@ -108,7 +134,7 @@ input[id*="rad_prev"] {
     width: 100%;
     height: 400px;
 
-    border-bottom: 2px #aaa solid;
+    border-bottom: 2px var(--color2) solid;
 
     transition-property: background-position-x;
     transition-duration: 1s;
@@ -129,7 +155,6 @@ input[id*="rad_prev"] {
 
 .pos_rel {
     position: relative;
-    top: 10vh;
 }
 
 label[for*="rad_prev"]::before {
@@ -137,7 +162,7 @@ label[for*="rad_prev"]::before {
     width: 15px;
     height: 15px;
 
-    background-color: white;
+    background-color: var(--white);
 
     border-radius: 100%;
 
@@ -164,7 +189,7 @@ label[for*="rad_prev"]::after {
     width: 30px;
     height: 30px;
 
-    border: 5px solid white;
+    border: 5px solid var(--white);
 
     border-radius: 100%;
 
