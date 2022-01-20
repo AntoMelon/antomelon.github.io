@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Antonin Lionnet | Accueil</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="bingo_gen.css">
+    <script src="bingo_gen.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="https://bingosync.com">Bingosync</a> custom JSON generator</h1>
+        <p>made by AntoMelon</p>
+    </header>
+
+    <section>
+        <h2>Game Selector</h2>
+        <p>Selected game: <select id="games" title="This is used to store objectives from each game separetely"><option value="none">Unselected</option></select> <button id="btnLoadObjectives">Load objectives</button> <button id="btnRemoveGame">Remove game</button></p>
+        <p>Add game: <input type="text" id="fieldAddGame"> <button id="btnAddGame">Add</button></p>
+    </section>
+
+    <main>
+        <h2>Objectives</h2><button id="btnGenerate">Generate JSON</button>
+        <p>Add objective: <input type="text" id="fieldAddObjective"> <button id="btnAddObjective">Add objective</button></p>
+        <ul id="objectives">
+        </ul>
+    </main>
+
+    <footer>
+        <h2>Output</h2>
+        <p id="output"></p>
+        <button id="btnCopy">Copy to clipboard</button>
+    </footer>
+</body>
+
+</html>
