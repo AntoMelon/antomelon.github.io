@@ -174,7 +174,7 @@ function renderBonuses(ctx,bonuses,disp_size) {
  *  TRON - version 2021 pour les L3 INFO
  */
 document.addEventListener("DOMContentLoaded", function() {
-    document.body.appendChild(new Audio("https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/d/d2/240_Bits_Per_Mile_draft_2.ogg/revision/latest?cb=20190521220331"));
+    document.body.appendChild(new Audio("./240_Bits_Per_Mile_draft_2.ogg"));
     let audio = document.body.lastElementChild;
     audio.setAttribute("autoplay","");
     audio.setAttribute("loop","");
