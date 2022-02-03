@@ -66,6 +66,10 @@ p {
     margin-bottom: 5px;
 }
 
+strong {
+    font-weight: bold;
+}
+
 header {
     width: 80%;
 
@@ -89,6 +93,24 @@ section, main, footer {
     margin: auto;
 
     margin-top: 20px;
+}
+
+aside {
+    border: 1px solid black;
+    background-color: white;
+
+    border-radius: 20px;
+
+    padding: 10px;
+
+    width: 20%;
+    height: 40%;
+    overflow-y: scroll;
+
+    position: fixed;
+
+    right: 12%;
+    top: 10%;
 }
 
 main, footer {
