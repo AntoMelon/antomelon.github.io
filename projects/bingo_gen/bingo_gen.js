@@ -170,9 +170,11 @@ document.addEventListener("DOMContentLoaded", function() {
     function loadCustomObjectivesButton() {
         let currGame = document.getElementById("games").value.toLowerCase();
         let aside = document.getElementsByTagName("aside")[0];
-        aside.innerHTML = "<h2>Special codes for this game</h2>";
+        aside.innerHTML = "";
 
         if (currGame === "hollow knight" || currGame === "hollow_knight" || currGame === "hk") {
+            aside.innerHTML += "<h2>Detected game: Hollow Knight</h2>";
+
             aside.innerHTML += "<p>Use <strong>%enemy%</strong> for a random enemy</p>";
             aside.innerHTML += "<p>Use <strong>%charm%</strong> for a random charm</p>";
 
