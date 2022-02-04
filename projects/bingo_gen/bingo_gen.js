@@ -1,4 +1,9 @@
 const KEY = "bingo_gen";
+const randomRegExp = /%random\([0-9]+,\s*[0-9]+\)%/;
+
+function randRange(a,b) {
+    return Math.floor(Math.random()*(b-a+1))+a;
+}
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -359,10 +364,47 @@ document.addEventListener("DOMContentLoaded", function() {
         return string.replaceAll("%enemy%",hkEnemyEntry()).replaceAll("%charm%",hkCharm());
     }
 
+    function interpretAndSubRandoms(string) {
+        let match = randomRegExp.exec(string);
+
+        var res = string;
+
+        while (match) {
+            let idxFstStart = match.index + 8;
+            let idxFstEnd = idxFstStart + 1;
+
+            while (res.charAt(idxFstEnd) != ',') {
+                ++idxFstEnd;
+            }
+
+            let idxLstStart = idxFstEnd + 1;
+            let idxLstEnd = idxLstStart + 1;
+
+            while (res.charAt(idxLstEnd) != ')') {
+                ++idxLstEnd;
+            }
+
+            let inf_range = res.substring(idxFstStart,idxFstEnd);
+            let sup_range = res.substring(idxLstStart,idxLstEnd);
+
+            res = res.replace(randomRegExp,randRange(Number(inf_range),Number(sup_range)));
+            match = randomRegExp.exec(res);
+        }
+
+        return res;
+    }
+
     function subAccToGame(game, string) {
         let currGame = game.toLowerCase();
+        let currStr = string;
+
+        while (randomRegExp.exec(currStr)) {
+            currStr = interpretAndSubRandoms(currStr);
+        }
+        
+
         if (currGame === "hollow knight" || currGame === "hollow_knight" || currGame === "hk") {
-            return hkSubstitution(string);
+            return hkSubstitution(currStr);
         }
 
         return "";
