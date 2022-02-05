@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             aside.innerHTML += "<p>Use <strong>%mob%</strong> for a random mob</p>";
             aside.innerHTML += "<p>Use <strong>%hostile%</strong> for a random hostile mob</p>";
-            aside.innerHTML += "<p>Use <strong>%biome%</strong> for a random biome</p>";
+            aside.innerHTML += "<p>Use <strong>%biome%</strong> for a random biome (WIP)</p>";
         } else {
             aside.innerHTML += "<p>No special codes implemented for this game</p>";
         }
