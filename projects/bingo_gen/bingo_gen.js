@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
      * @param {String} str the String to escape
      */
      function escapeString(str) {
-        return str.replaceAll("<","&lt;").replaceAll(">","&gt;");
+        return str.replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\"","'");
     }
 
 
@@ -183,6 +183,12 @@ document.addEventListener("DOMContentLoaded", function() {
             aside.innerHTML += "<p>Use <strong>%enemy%</strong> for a random enemy</p>";
             aside.innerHTML += "<p>Use <strong>%charm%</strong> for a random charm</p>";
 
+        } else if (currGame === "minecraft" || currGame === "mc") { 
+            aside.innerHTML += "<h2>Detected game: Minecraft</h2>";
+
+            aside.innerHTML += "<p>Use <strong>%mob%</strong> for a random mob</p>";
+            aside.innerHTML += "<p>Use <strong>%hostile%</strong> for a random hostile mob</p>";
+            aside.innerHTML += "<p>Use <strong>%biome%</strong> for a random biome</p>";
         } else {
             aside.innerHTML += "<p>No special codes implemented for this game</p>";
         }
@@ -287,6 +293,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /*-----Special Objectives Functions-----*/
 
+    /*---Hollow Knight---*/
+
     const hkEnemies = ["Crawlid", "Vengefly / Mouche Vengeresse", "Vengefly King / Mouche Vengeresse Royale", "Gruzzer",
                         "Gruz Mother / Mère de Gruz", "Tiktik", "Aspid Hunter / Aspid Chasseresse", "Aspid Mother / Mère Aspid",
                         "Aspid Hatchling / Nouveau-né Aspid", "Goam", "Wandering Husk / Carcasse Vagabonde", "Husk Hornhead / Carcasse Cornue",
@@ -364,6 +372,49 @@ document.addEventListener("DOMContentLoaded", function() {
         return string.replaceAll("%enemy%",hkEnemyEntry()).replaceAll("%charm%",hkCharm());
     }
 
+    /*-----------------------------------------------------*/
+
+    /*---Minecraft---*/
+
+    const mcMobs = ["Axolotl", "Bat", "Cat", "Chicken", "Cod", "Cow",
+                    "Donkey", "Fox", "Glow Squid", "Horse", "Mooshroom", "Mule",
+                    "Ocelot", "Parrot", "Pig", "Pufferfish", "Rabbit", "Salmon",
+                    "Sheep", "Skeleton Horse", "Snow Golem", "Squid", "Strider", "Tropical Fish",
+                    "Turtle", "Villager", "Wandering Trader", "Bee", "Cave Spider", "Dolphin",
+                    "Enderman", "Goat", "Iron Golem", "Llama", "Panda", "Piglin",
+                    "Polar Bear", "Spider", "Trader Llama", "Wolf", "Zombified Piglin", "Blaze",
+                    "Chicken Jockey", "Creeper", "Drowned", "Elder Guardian", "Endermite", "Evoker",
+                    "Ghast", "Guardian", "Hoglin", "Husk", "Magma Cube", "Phantom", "Piglin Brute",
+                    "Pillager", "Ravager", "Shulker", "Silverfish", "Skeleton", "Skeleton Horseman",
+                    "Slime", "Spider Jockey", "Stray", "Vex", "Vindicator", "Witch",
+                    "Wither Skeleton", "Zoglin", "Zombie", "Zombie Villager", "Ender Dragon", "Wither"];
+
+    const mcHostiles = ["Blaze", "Chicken Jockey", "Creeper", "Drowned", "Elder Guardian", "Endermite", "Evoker",
+                    "Ghast", "Guardian", "Hoglin", "Husk", "Magma Cube", "Phantom", "Piglin Brute",
+                    "Pillager", "Ravager", "Shulker", "Silverfish", "Skeleton", "Skeleton Horseman",
+                    "Slime", "Spider Jockey", "Stray", "Vex", "Vindicator", "Witch",
+                    "Wither Skeleton", "Zoglin", "Zombie", "Zombie Villager", "Ender Dragon", "Wither"];
+
+    function mcMob() {
+        let id = Math.floor(Math.random()*mcMobs.length);
+        var mob = mcMobs[id];
+
+        return mob;
+    }
+
+    function mcHostile() {
+        let id = Math.floor(Math.random()*mcHostiles.length);
+        var mob = mcHostiles[id];
+
+        return mob;
+    }
+
+    function mcSubstitution(string) {
+        return string.replaceAll("%mob%",mcMob()).replaceAll("%hostile%",mcHostile());
+    }
+
+    /*-----------------------------------------------------*/
+
     function interpretAndSubRandoms(string) {
         let match = randomRegExp.exec(string);
 
@@ -405,6 +456,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (currGame === "hollow knight" || currGame === "hollow_knight" || currGame === "hk") {
             return hkSubstitution(currStr);
+        }
+
+        if (currGame === "minecraft" || currGame === "mc") {
+            return mcSubstitution(currStr);
         }
 
         return currStr;
