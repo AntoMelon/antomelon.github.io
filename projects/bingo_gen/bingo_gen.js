@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return hkSubstitution(currStr);
         }
 
-        return "";
+        return string;
     }
 
 });
