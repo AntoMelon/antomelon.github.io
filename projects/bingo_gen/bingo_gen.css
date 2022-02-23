@@ -148,11 +148,8 @@ main ul, footer {
     overflow-y: scroll;
 }
 
-input#output {
-    width: 90%;
-    height: 60%;
-
-    margin: auto;
+p#output {
+    height: 80%;
 }
 
 
