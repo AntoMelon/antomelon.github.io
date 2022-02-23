@@ -50,6 +50,23 @@ table {
 /**********************************
  *	Début de la feuille de style  *
  **********************************/
+body {
+    --textColor: #000;
+    --bgColor: #fff;
+
+    background-color: var(--bgColor);
+    color: var(--textColor);
+
+    transition-property: background-color, color;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+body.dark {
+    --textColor: #fff;
+    --bgColor: #000;
+}
+
 h1, h2 {
     font-weight: bold;
 }
@@ -83,7 +100,10 @@ header p {
 }
 
 section, main, footer {
-    border: 1px solid black;
+    border: 1px solid var(--textColor);
+    background-color: var(--bgColor);
+    color: var(--textColor);
+
     border-radius: 20px;
 
     padding: 10px;
@@ -93,11 +113,16 @@ section, main, footer {
     margin: auto;
 
     margin-top: 20px;
+
+    transition-property: inherit;
+    transition-timing-function: inherit;
+    transition-duration: inherit;
 }
 
 aside {
-    border: 1px solid black;
-    background-color: white;
+    border: 1px solid var(--textColor);
+    background-color: var(--bgColor);
+    color: var(--textColor);
 
     border-radius: 20px;
 
@@ -111,6 +136,10 @@ aside {
 
     right: 12%;
     top: 10%;
+
+    transition-property: inherit;
+    transition-timing-function: inherit;
+    transition-duration: inherit;
 }
 
 main ul, footer {

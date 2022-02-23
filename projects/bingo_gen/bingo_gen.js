@@ -1,4 +1,5 @@
 const KEY = "bingo_gen";
+const DARK_KEY = "darkMode";
 const randomRegExp = /%random\([0-9]+,\s*[0-9]+\)%/;
 
 function randRange(a,b) {
@@ -195,11 +196,48 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
+    
+    function initiateDarkMode() {
+        let bool = localStorage.getItem(DARK_KEY);
+        if (bool == "true") {
+            let body = document.body;
+            body.classList.toggle("dark");
+        }
+    }
+
+
+    function toggleDarkInStorage() {
+        let bool = localStorage.getItem(DARK_KEY);
+        if (bool == null) {
+            localStorage.setItem(DARK_KEY,"true");
+            return;
+        }
+
+        if (bool == "false") {
+            localStorage.setItem(DARK_KEY,"true");
+            return;
+        }
+
+        localStorage.setItem(DARK_KEY,"false");
+    }
+
+
 
 
 
     /*----------MAIN PROGRAM----------*/
 
+    document.addEventListener("keydown", function(e) {
+        if (e.key == "d" && e.altKey) {
+            e.preventDefault();
+            let body = document.body;
+            body.classList.toggle("dark");
+            toggleDarkInStorage();
+            return;
+        }
+    });
+
+    initiateDarkMode();
     loadGames();
 
     let btnAddGame = document.getElementById("btnAddGame");
