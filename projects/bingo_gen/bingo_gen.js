@@ -53,6 +53,10 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
+        if (!window.confirm("Are you sure? This action cannot be undone!")) {
+            return;
+        }
+
         let name = document.getElementById("games").value;
 
         memory = JSON.parse(memory);
@@ -356,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         "Shardmite / Mite de Cristal", "Glimback", "Crystal Hunter / Chasseur de Cristaux", "Crystal Crawler / Rampant de Cristal",
                         "Husk Miner / Carcasse Mineuse", "Crystallised Husk / Carcasse Cristallisée", "Crystal Guardian / Gardien de Cristal", "Furious Vengefly / Mouche Vengeresse Enragée",
                         "Volatile Gruzzer / Gruzzer Instable", "Violent Husk / Carcasse Violente", "Slobbering Husk / Carcasse Baveuse", "Dirtcarver / Fouisseur",
-                        "Carver Hatcger / Fouisseur Incubateur", "Garpede", "Corpse Creeper / Nécrosite", "Deepling / Mini-Araignée",
+                        "Carver Hatcher / Fouisseur Incubateur", "Garpede", "Corpse Creeper / Nécrosite", "Deepling / Mini-Araignée",
                         "Deephunter / Araignée Cracheuse", "Little Weaver / Tisseur", "Stalking Devout / Adorateur Fouineur", "Nosk",
                         "Shadow Creeper / Rampant des Ombres", "Lesser Mawlek / Mawlek Inférieur", "Mawlurk", "Brooding Mawlek / Mawlek Maussade",
                         "Lightseed / Blob Parasite", "Infected Balloon / Bulle Infectée", "Broken Vessel / Vaisseau Corrompu", "Boofly / Mouche Boursouflée",
