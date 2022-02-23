@@ -142,7 +142,11 @@ aside {
     transition-duration: inherit;
 }
 
-main ul, footer {
+footer {
+    height: 200px;
+}
+
+main ul {
     height: 200px;
 
     overflow-y: scroll;
@@ -150,6 +154,7 @@ main ul, footer {
 
 p#output {
     height: 80%;
+    overflow-y: scroll;
 }
 
 
