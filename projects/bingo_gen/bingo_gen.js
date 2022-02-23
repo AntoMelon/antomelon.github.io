@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
         memory = JSON.parse(memory);
 
         if (memory[game].length < 25) {
-            alert("You need at least 25 objectives.");
+            alert("You need at least 25 objectives (currently "+memory[game].length+").");
             return;
         }
 
