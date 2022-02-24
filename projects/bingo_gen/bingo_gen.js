@@ -121,6 +121,8 @@ document.addEventListener("DOMContentLoaded", function() {
             objectives.innerHTML += "<li><button class=\"delete\"></button>"+objective+"</li>"; 
         }
 
+        updateObjectivesNumberWith(memory[name].length);
+
         loadCustomObjectivesButton();
     }
 
@@ -197,6 +199,11 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             aside.innerHTML += "<p>No special codes implemented for this game</p>";
         }
+    }
+
+    function updateObjectivesNumberWith(i) {
+        let num = document.getElementById("objNumber");
+        num.innerHTML = ""+i;
     }
 
 
