@@ -1,8 +1,10 @@
 "use strict";
 
 //Need to be edited in other functions
-var SPD_1 = 0.2;
-var SPD_2 = 0.2;
+var SPD_1 = 0;
+var SPD_2 = 0;
+
+var waiting_start = true;
 
 function storeTurnPoint(lumicycle) {
     let coord_x = lumicycle.pos[0];
@@ -92,7 +94,9 @@ function particlesUpdatePos(particles,dt) {
 
 function displayParticles(ctx,particles) {
     for (let i = 0; i < particles.length; ++i) {
-        ctx.fillRect(particles[i].pos[0]-particles[i].sz/2,particles[i].pos[1]-particles[i].sz/2,particles[i].sz,particles[i].sz);
+        if (particles[i] != undefined){
+            ctx.fillRect(particles[i].pos[0]-particles[i].sz/2,particles[i].pos[1]-particles[i].sz/2,particles[i].sz,particles[i].sz);
+        }
     }
 }
 
@@ -118,6 +122,9 @@ function particleCreateForTrailOf(lumicycle,particles) {
 }
 
 function trailParticlesUpdatePos(particles,dt) {
+    if (waiting_start) {
+        return;
+    }
     for (let i = 0; i < particles.length; ++i) {
         particles[i].pos[0] += particles[i].spd[0]*dt;
         particles[i].pos[1] += particles[i].spd[1]*dt;
@@ -126,6 +133,9 @@ function trailParticlesUpdatePos(particles,dt) {
 }
 
 function makeParticlesDecay(particles) {
+    if (waiting_start) {
+        return;
+    }
     for (let i = 0; i < particles.length; ++i) {
         if (particles[i].framesBeforeDecay == 0) {
             particles.splice(i,1);
@@ -136,6 +146,9 @@ function makeParticlesDecay(particles) {
 
 
 function createBonusInstance(bonuses,scrWidth,scrHeight,disp_size) {
+    if (waiting_start) {
+        return;
+    }
     let instance = {pos: [Math.random()*(scrWidth-disp_size)+disp_size/2, Math.random()*(scrHeight-disp_size)+disp_size/2], sz: disp_size, collected: false};
     bonuses.instances.push(instance);
     console.log(bonuses);
@@ -176,7 +189,6 @@ function renderBonuses(ctx,bonuses,disp_size) {
 document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(new Audio("./240_Bits_Per_Mile_draft_2.ogg"));
     let audio = document.body.lastElementChild;
-    audio.setAttribute("autoplay","");
     audio.setAttribute("loop","");
     
 
@@ -204,6 +216,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /**Modifier la direction d'un lumicycle */
     document.addEventListener("keydown", function(e) {
+        let audio = document.querySelector("audio");
+        audio.play();
+
         switch (e.key) {
             case "z":
                 if (isDestroyed(lumi1) || isDestroyed(lumi2)) {return;}
@@ -290,7 +305,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 break;
 
             case " ":
-                if (lumi1Collided || lumi2Collided) {
+                if (lumi1Collided || lumi2Collided || waiting_start) {
+                    waiting_start = false;
                     SPD_1 = 0.2;
                     SPD_2 = 0.2;
                     
@@ -378,10 +394,17 @@ document.addEventListener("DOMContentLoaded", function() {
     function render() {
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
+        if (waiting_start) {
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.font = "24px helvetica";
+            ctx.fillText("Press SPACE to start",WIDTH/2,HEIGHT/2);
+        }
+
         ctx.fillStyle = "white";
         ctx.textAlign = "left";
         ctx.font = "12px helvetica";
-        ctx.fillText("Music: Freddy Fazbear's Pizzeria Simulator OST - 240 bits per mile, by Leon Riskin (allow autoplay to enjoy)",10,0.05*HEIGHT);
+        ctx.fillText("Music: Freddy Fazbear's Pizzeria Simulator OST - 240 bits per mile, by Leon Riskin",10,0.05*HEIGHT);
 
         ctx.textAlign = "center";
         ctx.font = "24px helvetica";
